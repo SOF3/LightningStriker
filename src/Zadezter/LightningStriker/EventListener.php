@@ -46,28 +46,28 @@ class EventListener implements Listener {
     
     public function onJoin(PlayerJoinEvent $event){
         if($this->plugin->config->get("lightning-join") == true){
-          $this->plugin->summonLightning(new Player, true);
+          $this->plugin->summonLightning($event->getPlayer(), true);
           return;
         }
     }
     
     public function onDeath(PlayerDeathEvent $event){
         if($this->plugin->config->get("lightning-death") == true){
-          $this->plugin->summonLightning(new Player, true);
+          $this->plugin->summonLightning($event->getPlayer(), true);
           return;
         }
     }
     
     public function onQuit(PlayerQuitEvent $event){
         if($this->plugin->config->get("lightning-quit") == true){
-          $this->plugin->summonLightning(new Player, true);
+          $this->plugin->summonLightning($event->getPlayer(), true);
           return;
         }
     }
     
     public function onRespawn(PlayerRespawnEvent $event){
         if($this->plugin->config->get("lightning-respawn") == true){
-          $this->plugin->summonLightning(new Player, true);
+          $this->plugin->summonLightning($event->getPlayer(), true);
           return;
         }
     }
