@@ -38,38 +38,36 @@ use pocketmine\Player;
 
 class EventListener implements Listener {
 	
-    private $plugin; 
-    private $player;
+    private $plugin;
   
-    public function __construct(Main $plugin, Player $player){
-        $this->plugin = $plugin; 
-        $this->player = $player;
+    public function __construct(Main $plugin){
+        $this->plugin = $plugin;
     }
     
     public function onJoin(PlayerJoinEvent $event){
         if($this->plugin->config->get("lightning-join") == true){
-          $this->plugin->summonLightning($this->player, true);
+          $this->plugin->summonLightning(new Player, true);
           return;
         }
     }
     
     public function onDeath(PlayerDeathEvent $event){
         if($this->plugin->config->get("lightning-death") == true){
-          $this->plugin->summonLightning($this->player, true);
+          $this->plugin->summonLightning(new Player, true);
           return;
         }
     }
     
     public function onQuit(PlayerQuitEvent $event){
         if($this->plugin->config->get("lightning-quit") == true){
-          $this->plugin->summonLightning($this->player, true);
+          $this->plugin->summonLightning(new Player, true);
           return;
         }
     }
     
     public function onRespawn(PlayerRespawnEvent $event){
         if($this->plugin->config->get("lightning-respawn") == true){
-          $this->plugin->summonLightning($this->player, true);
+          $this->plugin->summonLightning(new Player, true);
           return;
         }
     }
