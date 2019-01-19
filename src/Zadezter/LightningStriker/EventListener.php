@@ -34,39 +34,42 @@ use pocketmine\event\player\PlayerDeathEvent;
 use pocketmine\event\player\PlayerQuitEvent;
 use pocketmine\event\player\PlayerRespawnEvent;
 use pocketmine\event\Listener;
+use pocketmine\Player;
 
 class EventListener implements Listener {
 	
     private $plugin; 
+    private $player;
   
-    public function __construct(Main $plugin){
+    public function __construct(Main $plugin, Player $player){
         $this->plugin = $plugin; 
+        $this->player = $player;
     }
     
     public function onJoin(PlayerJoinEvent $event){
         if($this->plugin->config->get("lightning-join") == true){
-          $this->plugin->summonLightning($player, true);
+          $this->plugin->summonLightning($this->player, true);
           return;
         }
     }
     
     public function onDeath(PlayerDeathEvent $event){
         if($this->plugin->config->get("lightning-death") == true){
-          $this->plugin->summonLightning($player, true);
+          $this->plugin->summonLightning($this->player, true);
           return;
         }
     }
     
     public function onQuit(PlayerQuitEvent $event){
         if($this->plugin->config->get("lightning-quit") == true){
-          $this->plugin->summonLightning($player, true);
+          $this->plugin->summonLightning($this->player, true);
           return;
         }
     }
     
     public function onRespawn(PlayerRespawnEvent $event){
         if($this->plugin->config->get("lightning-respawn") == true){
-          $this->plugin->summonLightning($player, true);
+          $this->plugin->summonLightning($this->player, true);
           return;
         }
     }
