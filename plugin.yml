@@ -1,0 +1,10 @@
+name: LightningStriker
+version: 1.0.0
+api:
+- 3.0.0
+- 3.5.5
+main: Zadezter\LightningStriker\Main
+description: Summon the lightning effect to strikes player with events!
+author:
+- Zadezter
+- Implasher Team
