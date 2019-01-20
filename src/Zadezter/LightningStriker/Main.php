@@ -46,9 +46,8 @@ class Main extends PluginBase {
         $this->getServer()->getPluginManager()->registerEvents(new EventListener($this), $this);
     }
 	
-    public function summonLightning(Player $player, $strike) : void{
+    public function summonLightning(Player $player, $strike){
         if($strike === true){
-          $level = $player->getLevel();
           $pk = new AddEntityPacket();
           $pk->type = 93;
           $pk->entityRuntimeId = Entity::$entityCount++;
@@ -56,6 +55,7 @@ class Main extends PluginBase {
           $pk->yaw = $player->getYaw();
           $pk->pitch = $player->getPitch();
           $player->getServer()->broadcastPacket($player->getServer()->getOnlinePlayers(), $pk);
+          return;
         }
     }
 }
