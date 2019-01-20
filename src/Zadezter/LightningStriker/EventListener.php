@@ -32,7 +32,6 @@ namespace Zadezter\LightningStriker;
 use pocketmine\event\player\PlayerJoinEvent;
 use pocketmine\event\player\PlayerDeathEvent;
 use pocketmine\event\player\PlayerQuitEvent;
-use pocketmine\event\player\PlayerRespawnEvent;
 use pocketmine\event\Listener;
 use pocketmine\Player;
 
@@ -60,13 +59,6 @@ class EventListener implements Listener {
     
     public function onQuit(PlayerQuitEvent $event){
         if($this->plugin->config->get("lightning-quit") == true){
-          $this->plugin->summonLightning($event->getPlayer(), true);
-          return;
-        }
-    }
-    
-    public function onRespawn(PlayerRespawnEvent $event){
-        if($this->plugin->config->get("lightning-respawn") == true){
           $this->plugin->summonLightning($event->getPlayer(), true);
           return;
         }
