@@ -7,8 +7,8 @@
 ### Information
 This is a plugin, allows you to get lightning strike effect when<br>
 you have been joined/quit or death in the server.<br>
-You can setup this plugin on `lightning.yml` config file anytime.
-> P.S: The lightning won't hurt you.
+You can setup this on `lightning.yml` config file anytime.
+> P.S: The lightning strike won't hurt you.
 
 ### How to setup?
  - Put the plugin in your plugins folder.
