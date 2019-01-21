@@ -37,30 +37,27 @@ use pocketmine\Player;
 
 class EventListener implements Listener {
 	
-    private $plugin;
+    private $config;
   
-    public function __construct(Main $plugin){
-        $this->plugin = $plugin;
+    public function __construct($config){
+        $this->config = $config;
     }
     
     public function onJoin(PlayerJoinEvent $event){
-        if($this->plugin->config->get("lightning-join") == true){
-          $this->plugin->summonLightning($event->getPlayer(), true);
-          return;
+        if($this->config->get("lightning-join")){
+            Main::summonLightning($event->getPlayer());
         }
     }
     
     public function onDeath(PlayerDeathEvent $event){
-        if($this->plugin->config->get("lightning-death") == true){
-          $this->plugin->summonLightning($event->getPlayer(), true);
-          return;
+        if($this->config->get("lightning-death")){
+            Main::summonLightning($event->getPlayer());
         }
     }
     
     public function onQuit(PlayerQuitEvent $event){
-        if($this->plugin->config->get("lightning-quit") == true){
-          $this->plugin->summonLightning($event->getPlayer(), true);
-          return;
+        if($this->config->get("lightning-quit")){
+            Main::summonLightning($event->getPlayer());
         }
     }
 }

@@ -37,25 +37,19 @@ use pocketmine\Player;
 
 class Main extends PluginBase {
 	
-    public $config;
-
     public function onEnable() : void{
-        if(!is_dir($this->getDataFolder())) mkdir($this->getDataFolder());
-        if(!is_file($this->getDataFolder() . "lightning.yml")) $this->saveResource("lightning.yml");
-        $this->config = new Config($this->getDataFolder() . "lightning.yml");
-        $this->getServer()->getPluginManager()->registerEvents(new EventListener($this), $this);
+        $this->saveResource("lightning.yml");
+        $config = new Config($this->getDataFolder() . "lightning.yml");
+        $this->getServer()->getPluginManager()->registerEvents(new EventListener($config), $this);
     }
 	
-    public function summonLightning(Player $player, $strike){
-        if($strike === true){
-          $pk = new AddEntityPacket();
-          $pk->type = 93;
-          $pk->entityRuntimeId = Entity::$entityCount++;
-          $pk->position = $player->asVector3()->add(0, 0);
-          $pk->yaw = $player->getYaw();
-          $pk->pitch = $player->getPitch();
-          $player->getServer()->broadcastPacket($player->getServer()->getOnlinePlayers(), $pk);
-          return;
-        }
+    public static function summonLightning(Player $player){
+        $pk = new AddEntityPacket();
+        $pk->type = 93;
+        $pk->entityRuntimeId = Entity::$entityCount++;
+        $pk->position = $player->asVector3();
+        $pk->yaw = $player->getYaw();
+        $pk->pitch = $player->getPitch();
+        $player->getServer()->broadcastPacket($player->getServer()->getOnlinePlayers(), $pk);
     }
 }
